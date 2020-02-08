@@ -1,0 +1,27 @@
+{
+  "name": "tsmodules",
+  "version": "1.0.0",
+  "description": "TypeScript project template to import modules without extension, and modules with default exports that use node built-ins",
+  "keywords": [
+    "typescript",
+    "modules",
+    "es modules",
+    "esnext",
+    "influxdb",
+    "apollo-server"
+  ],
+  "license": "MIT",
+  "author": "dandv",
+  "type": "module",
+  "main": "run.js",
+  "scripts": {
+    "start": "node --experimental-specifier-resolution=node run.js"
+  },
+  "dependencies": {
+    "influx": "^5.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.0",
+    "typescript": "^3.7.5"
+  }
+}
