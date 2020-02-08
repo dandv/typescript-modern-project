@@ -35,7 +35,7 @@ const influx = new Influx.InfluxDB();
 
 # Import your own modules without specifying an extension
 
-Run Node with the `node --experimental-specifier-resolution=node` parameter:
+When transpiling, [TypeScript won't generate an extension for you](https://github.com/microsoft/TypeScript/issues/16577). Run Node with the `node --experimental-specifier-resolution=node` parameter:
 
     node --experimental-specifier-resolution=node run.js
     
@@ -44,3 +44,9 @@ Otherwise, [node mandates that you specify the extension](https://nodejs.org/api
 # Run the resulting JavaScript code
 
 Add `"type": "module"` to `package.json`, because [TypeScript can't generate files with the .mjs extension](https://github.com/microsoft/TypeScript/issues/18442#issuecomment-581738714).
+
+# ESLint
+
+To be able to run `eslint`, we must create an `.eslintrc.cjs` file, rather than a `.js` one. Then, install the required dependencies:
+
+    npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
