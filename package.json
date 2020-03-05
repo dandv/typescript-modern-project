@@ -15,7 +15,8 @@
   "type": "module",
   "main": "run.js",
   "scripts": {
-    "start": "node --experimental-specifier-resolution=node run.js",
+    "build": "rm *.js && tsc",
+    "start": "node --experimental-specifier-resolution=node --harmony run.js",
     "lint": "eslint *.ts"
   },
   "dependencies": {
@@ -26,6 +27,6 @@
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   }
 }
