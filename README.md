@@ -75,3 +75,27 @@ Add `"type": "module"` to `package.json`, because [TypeScript can't generate fil
 To be able to run `eslint`, we must create an `.eslintrc.cjs` file, rather than a `.js` one (due to `"type": "module"` in `package.json`). Then, install the required dependencies:
 
     npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+
+
+# Jest
+
+To fully support Jest with TypeScript and ESLint, we need to:
+
+* `npm install --save-dev jest @types/jest eslint-plugin-jest`
+* add `"jest"` to the `types` array in `tsconfig.json`
+* add the `'jest'` plugin to `.eslintrc.cjs` and also add `'jest/globals': true` to its `env` key
+* create [`jest.config.cjs`](jest.config.cjs)
+
+Now if Jest supported ES Modules, we'd be done, but [it doesn't](https://github.com/facebook/jest/issues/4842), so we'll get this error when running `npm test`:
+
+> SyntaxError: Cannot use import statement outside a module
+
+To work around that, we need to add a `transform` key to `jest.config.cjs` and use Babel to transform the `import` statements from the `.js` files that TypeScript generates:
+
+* `npm install --save-dev @babel/plugin-transform-modules-commonjs`
+* create [`babel.config.cjs`](babel.config.cjs)
+
+Normally, to run Jest from `package.json`, we'd add a `"test": "jest"` line. That won't be sufficient, because we need to pass the `--harmony` flag to node (for optional chaining support). 
+To pass parameters to Node when running Jest, we'll add the following `test` line:
+
+    "test": "node --harmony node_modules/.bin/jest"

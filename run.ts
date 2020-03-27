@@ -10,4 +10,4 @@ const influx = new Influx.InfluxDB();
 
 const l = new Lib();
 l.run();
-console.log(typeof influx);
+console.log('Should display "object":', typeof influx);

@@ -6,9 +6,11 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
+    'jest',
   ],
   env: {
     node: true,  // for `console`
+    'jest/globals': true,  // describe, test, expect
   },
   extends: [
     'eslint:recommended',
