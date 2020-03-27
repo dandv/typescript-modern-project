@@ -99,3 +99,9 @@ Normally, to run Jest from `package.json`, we'd add a `"test": "jest"` line. Tha
 To pass parameters to Node when running Jest, we'll add the following `test` line:
 
     "test": "node --harmony node_modules/.bin/jest"
+
+
+# Source maps
+
+If your script generates an error, you'll see the line numbers from the generated `.js` files, which is not helpful. We want to see the original paths and line numbers from the `.ts` files. To do that, we'll add `sourceMap: true` to `tsconfig.json`, install [`source-map-support`](https://www.npmjs.com/package/source-map-support) and run node with the `-r source-map-support/register` parameter. Note that Jest already takes care of source mapping so you'll see the `.ts` line numbers without having to do anything extra.
+ 

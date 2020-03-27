@@ -10,4 +10,12 @@ const influx = new Influx.InfluxDB();
 
 const l = new Lib();
 l.run();
-console.log('Should display "object":', typeof influx);
+
+try {
+  throw new Error('testing source mapping');
+} catch (e) {
+  if (e.stack.includes('.ts:')) {
+    console.info('Stack trace mapped back to TypeScript should indicate correct error line number');
+    console.info(e);
+  }
+}

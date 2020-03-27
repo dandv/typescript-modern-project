@@ -16,7 +16,7 @@
   "main": "run.js",
   "scripts": {
     "build": "rm *.js && tsc",
-    "start": "node --experimental-specifier-resolution=node --harmony run.js",
+    "start": "node --experimental-specifier-resolution=node --harmony -r source-map-support/register run.js",
     "lint": "eslint *.ts",
     "test": "node --harmony node_modules/.bin/jest"
   },
@@ -32,6 +32,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.8.2",
     "jest": "^25.2.3",
+    "source-map-support": "^0.5.16",
     "typescript": "^3.8.3"
   }
 }

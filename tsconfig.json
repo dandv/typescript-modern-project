@@ -5,6 +5,7 @@
     //"module": "CommonJS",  // enables `import { InfluxDB } from 'influx'
     "allowSyntheticDefaultImports": true,  // allow default imports from modules with no default export. This does not affect code emit, just typechecking.
     "moduleResolution": "node",  // find modules in node_modules - https://github.com/Microsoft/TypeScript/issues/8189#issuecomment-212079251
-    "types": ["node", "jest"]  // Influx uses built-in node modules like http or url
+    "types": ["node", "jest"],  // Influx uses built-in node modules like http or url
+    "sourceMap": true
   }
 }
