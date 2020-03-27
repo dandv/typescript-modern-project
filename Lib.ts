@@ -6,6 +6,6 @@ export class Lib {
         c: 'foo'
       }
     };
-    a.b?.c && console.log('Success!');
+    a.b?.c && console.log('Own module imported successfully');
   }
 }

@@ -76,6 +76,8 @@ To be able to run `eslint`, we must create an `.eslintrc.cjs` file, rather than 
 
     npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
 
+Here's the [diff to add ESLint support](https://github.com/dandv/typescript-modern-project/commit/f816fe6e8d83ce554bd3066ac6638fb4406e917f).
+ 
 
 # Jest
 
@@ -100,8 +102,11 @@ To pass parameters to Node when running Jest, we'll add the following `test` lin
 
     "test": "node --harmony node_modules/.bin/jest"
 
+Here's the [diff to add Jest support](https://github.com/dandv/typescript-modern-project/commit/14368e9dadb5f50922ef46fbd9827eaff5334d5f).
+
 
 # Source maps
 
 If your script generates an error, you'll see the line numbers from the generated `.js` files, which is not helpful. We want to see the original paths and line numbers from the `.ts` files. To do that, we'll add `sourceMap: true` to `tsconfig.json`, install [`source-map-support`](https://www.npmjs.com/package/source-map-support) and run node with the `-r source-map-support/register` parameter. Note that Jest already takes care of source mapping so you'll see the `.ts` line numbers without having to do anything extra.
  
+Here's [the diff to add source map support](https://github.com/dandv/typescript-modern-project/commit/4e31278833f2ce07f474d9c6348bb4509082ee97).

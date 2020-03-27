@@ -7,6 +7,8 @@ import { Lib } from './Lib';
 
 import Influx from 'influx';
 const influx = new Influx.InfluxDB();
+if (influx instanceof Influx.InfluxDB)
+  console.info('Module without named exports imported successfully');
 
 const l = new Lib();
 l.run();
