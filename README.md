@@ -9,6 +9,8 @@ Minimalistic example of configuring TypeScript and Node to:
 * test the TypeScript code instantly without having to build first
 * run the resulting JavaScript code, with support for the optional chaining operator `?.`
 
+Bonus: continuous integration script for GitHub Actions. It automatically runs tests on every pushed commit.
+
 There is no need for Babel.
 
 # Emit ES modules code
@@ -46,7 +48,7 @@ One alternative would be to generate old ugly commonjs modules code by,
 * removing the `"type": "module"` line from `package.json`, and
 * changing the module line to `"module": "CommonJS"` in `tsconfig.json` (`allowSyntheticDefaultImports` also becomes unnecessary)
 
-Another is to import the entire module:
+What we'll do is import the entire module:
 
 ```js
 import Influx from 'influx';
@@ -83,7 +85,7 @@ Here's the [diff to add ESLint support](https://github.com/dandv/typescript-mode
 
 # Testing with Jest
 
-The cleanest way to fully support Jest with TypeScript, ES Modules and ESLint, is to use `ts-jest`, which has [a number of advantages over using Babel](https://github.com/kulshekhar/ts-jest#ts-jest).
+The cleanest way to fully support Jest with TypeScript, ES Modules and ESLint, is to use `ts-jest`, which has [a number of advantages over using Babel](https://github.com/kulshekhar/ts-jest#ts-jest). What we need to do:
 
 * `npm install --save-dev jest @types/jest eslint-plugin-jest` - for ES Lint support
 * add `"jest"` to the `types` array in `tsconfig.json`
@@ -103,3 +105,8 @@ The only caveat here is that `ts-jest` seems to prefer generated `.js` files ove
 If your script generates an error, you'll see the line numbers from the generated `.js` files, which is not helpful. We want to see the original paths and line numbers from the `.ts` files. To do that, we'll add `sourceMap: true` to `tsconfig.json`, install [`source-map-support`](https://www.npmjs.com/package/source-map-support) and run node with the `-r source-map-support/register` parameter. Note that Jest already takes care of source mapping so you'll see the `.ts` line numbers without having to do anything extra.
  
 Here's [the diff to add source map support](https://github.com/dandv/typescript-modern-project/commit/4e31278833f2ce07f474d9c6348bb4509082ee97).
+
+
+## CI testing
+
+Using [GitHub Actions](https://github.com/features/actions), we can configure automatic testing via `.yml` files under [.github/workflows](.github/workflows).
