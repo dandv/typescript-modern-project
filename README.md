@@ -97,7 +97,12 @@ To pass parameters to Node when running Jest, we'll add the following `test` lin
 
     "test": "node --harmony node_modules/.bin/jest"
 
-The only caveat here is that `ts-jest` seems to prefer generated `.js` files over their `.ts` originals, so we'll delete them just in case before testing, by running `npm run clean`. Another solution would be to generate the `.js` files in another directory using the `rootDir`/`outDir` settings in `tsconfig.json`, but that sort of setup comes with an [annoying limitation](https://github.com/microsoft/TypeScript/issues/9858) of Typescript that [forbids importing files outside the `rootDir`](https://stackoverflow.com/questions/52121725/maintain-src-folder-structure-when-building-to-dist-folder-with-typescript-3). That can be a [problem with monorepos](https://github.com/microsoft/TypeScript/issues/17611).
+The only caveat here is that Jest seems to prefer generated `.js` files over their `.ts` originals, so we'll exclude them via [`jest.config.cjs`](jest.config.cjs):
+
+```
+  testRegex: '.*.test.ts',  // test filenames matching this regex
+  moduleFileExtensions: ['ts', 'js'],  // modules are only in .ts files, but 'js' *must* be specified too
+``` 
 
 
 # Source maps
@@ -110,3 +115,10 @@ Here's [the diff to add source map support](https://github.com/dandv/typescript-
 ## CI testing
 
 Using [GitHub Actions](https://github.com/features/actions), we can configure automatic testing via `.yml` files under [.github/workflows](.github/workflows).
+
+
+## TODO
+
+The `tsconfig.json` settings generate `.js` built files, and `.js.map` source map files, next to the original `.ts` file. While some IDEs conveniently hide these files, it may be desirable to output them in a separate directory, typically `dist`.
+
+ This can be done using the `rootDir`/`outDir` settings in `tsconfig.json`, but that sort of setup comes with an [annoying limitation](https://github.com/microsoft/TypeScript/issues/9858) of Typescript that [forbids importing files outside the `rootDir`](https://stackoverflow.com/questions/52121725/maintain-src-folder-structure-when-building-to-dist-folder-with-typescript-3). That can be a [problem with monorepos](https://github.com/microsoft/TypeScript/issues/17611).
