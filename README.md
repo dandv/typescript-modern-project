@@ -60,11 +60,14 @@ However, this will generate `Error TS1192: Module '...' has no default export.` 
 
 # Import your own modules without specifying an extension
 
-When transpiling, [TypeScript won't generate an extension for you](https://github.com/microsoft/TypeScript/issues/16577). Run Node with the `node --experimental-specifier-resolution=node` parameter:
+When transpiling, [TypeScript won't generate an extension for you](https://github.com/microsoft/TypeScript/issues/16577). Run Node with the [`node --experimental-specifier-resolution=node` parameter](https://nodejs.org/api/cli.html#cli_experimental_specifier_resolution_mode):
 
     node --experimental-specifier-resolution=node run.js
     
 Otherwise, [node mandates that you specify the extension](https://nodejs.org/api/esm.html#esm_mandatory_file_extensions) in the `import` statement.
+
+
+# Optional chaining
 
 To support optional chaining, add the `--harmony` flag to the node command line.
 
