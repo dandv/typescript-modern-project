@@ -18,8 +18,8 @@
     "build": "npm run clean && tsc",
     "clean": "rm -f *.js *.js.map",
     "lint": "eslint *.ts",
-    "start": "node --experimental-specifier-resolution=node --harmony -r source-map-support/register run.js",
-    "test": "node --harmony node_modules/.bin/jest"
+    "start": "node --experimental-specifier-resolution=node -r source-map-support/register run.js",
+    "test": "node node_modules/.bin/jest"
   },
   "dependencies": {
     "influx": "^5.6.0"
@@ -37,6 +37,6 @@
     "typescript": "^3.9.7"
   },
   "engines": {
-    "node": ">=13.0.0"
+    "node": ">=14.0.0"
   }
 }
