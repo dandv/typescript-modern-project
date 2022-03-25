@@ -67,11 +67,6 @@ When transpiling, [TypeScript won't generate an extension for you](https://githu
 Otherwise, [node mandates that you specify the extension](https://nodejs.org/api/esm.html#esm_mandatory_file_extensions) in the `import` statement.
 
 
-# Optional chaining
-
-To support optional chaining, add the `--harmony` flag to the node command line.
-
-
 # Run the resulting JavaScript code
 
 Add `"type": "module"` to `package.json`, because [TypeScript can't generate files with the .mjs extension](https://github.com/microsoft/TypeScript/issues/18442#issuecomment-581738714).
